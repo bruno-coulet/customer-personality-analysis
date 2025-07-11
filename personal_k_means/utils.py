@@ -1,24 +1,8 @@
-
-from sklearn.datasets import load_iris
-import numpy as np, pandas as pd
-
-iris = load_iris()
-X = iris.data       
-y = iris.target     
-
-df = pd.DataFrame(X, columns=iris.feature_names)
-
-# X.shape
-X.shape[0]
-
-# Nombre de centroïdes
-K = 4
+import numpy as np
 
 def create_centroids(X, K):
-    # Nombre de centroïde
-    k = 4
     #  k indices différents et aléatoires parmi les lignes de X, sans répétition.
-    indices = np.random.choice(X.shape[0], k, replace=False)
+    indices = np.random.choice(X.shape[0], K, replace=False)
     # tableau (k, 4) contenant k centroïdes initiaux choisis parmi les points du dataset.
     initial_centroids = X[indices]
 
@@ -44,19 +28,16 @@ def update_centroids(X, cluster_labels, K):
     return new_centroids
 
 
-centroids = create_centroids(X, K)
-
-for iteration in range(10):  # ou jusqu'à convergence
-    cluster_labels = assign_to_clusters(X, centroids)
-    new_centroids = update_centroids(X, cluster_labels, K)
-    
-    if np.allclose(new_centroids, centroids, atol=1e-4):
-        print(f"Convergence à l’itération {iteration}")
-        break
-    
-    centroids = new_centroids
+def compute_inertia(X, labels, centroids):
+    inertia = 0
+    for i in range(centroids.shape[0]):
+        cluster_points = X[labels == i]
+        distances = np.linalg.norm(cluster_points - centroids[i], axis=1)
+        inertia += np.sum(distances ** 2)
+    return inertia
 
 
 
-print("Centroids finaux :\n", centroids,"\n")
-print("Exemples de labels assignés :", cluster_labels[:10])
+
+
+
