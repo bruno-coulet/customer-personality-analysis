@@ -65,13 +65,15 @@ Ce projet vise à étudier et appliquer les algorithmes de classification non su
 **Inconvénients** :
 - Nécessite de spécifier k à l'avance
 - Sensible à l'initialisation
-- Assume des clusters de forme sphérique
+- N'est pas efficace sur les clusters non convexes et aniosotropes
+
+**cluster convexe** : on peut tracer une ligne de n'importe quel point du cluster à un autre sans sortir du cluster
 
 #### 2. Hierarchical Clustering (Classification Hiérarchique)
 **Principe** : Crée une hiérarchie de clusters par fusion (agglomérative) ou division (divisive) successive.
 
 **Fonctionnement** :
-- Agglomératif : Commence avec chaque point comme cluster, fusionne les plus proches
+- Agglomératif : Commence en considérant chaque point comme un cluster, puis fusionne les plus proches
 - Divisif : Commence avec un seul cluster, divise récursivement
 - Utilise une matrice de distances et un critère de liaison
 
