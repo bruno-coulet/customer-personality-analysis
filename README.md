@@ -164,6 +164,20 @@ Ce projet vise à étudier et appliquer les algorithmes de classification non su
 **Objectif** : Maximiser la distance entre les différents clusters
 
 #### Indices de validité
+
+**Simhouette score**
+- Calcul pour chaque point :
+1. cohésion  a(i)
+La distance moyenne avec les autres points du même cluster
+2.  séparation b(i)
+La distance moyenne avec les points du cluster le plus proch
+3. score de chaque point :
+$s(i) = \frac{b(i) - a(i)}{\max\left(a(i),\ b(i)\right)}
+$
+- Calcul du score global :
+$S = \frac{1}{n} \sum_{i=1}^{n} s(i)
+$
+
 **Indices internes** :
 - Calinski-Harabasz Index : Rapport BCSS/WCSS
 - Davies-Bouldin Index : Moyenne des ratios intra/inter-cluster
