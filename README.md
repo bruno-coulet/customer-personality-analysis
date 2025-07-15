@@ -123,14 +123,26 @@ Ce projet vise à étudier et appliquer les algorithmes de classification non su
 **Principe** : Mesure la qualité du clustering en comparant la cohésion intra-cluster et la séparation inter-cluster.
 
 **Calcul** :
-- Pour chaque point : s(i) = (b(i) - a(i)) / max(a(i), b(i))
-- a(i) : distance moyenne aux points du même cluster
-- b(i) : distance moyenne au cluster le plus proche
+1. Pour chaque point :
+   - cohésion  a(i)
+La distance moyenne avec les autres points du même cluster
+   -  séparation b(i)
+La distance moyenne avec les points du cluster le plus proche
+   - score  :
+$$s(i) = \frac{b(i) - a(i)}{\max\left(a(i),\ b(i)\right)}$$
+
+
+2. Score global :
+$$S = \frac{1}{n} \sum_{i=1}^{n} s(i)$$
 
 **Interprétation** :
 - Score entre -1 et 1
 - Plus proche de 1 = meilleur clustering
 - Négatif = point mal classé
+
+
+
+
 
 #### Gap Statistic
 **Principe** : Compare la variance intra-cluster observée avec celle attendue sous une distribution uniforme.
@@ -164,19 +176,6 @@ Ce projet vise à étudier et appliquer les algorithmes de classification non su
 **Objectif** : Maximiser la distance entre les différents clusters
 
 #### Indices de validité
-
-**Simhouette score**
-- Calcul pour chaque point :
-1. cohésion  a(i)
-La distance moyenne avec les autres points du même cluster
-2.  séparation b(i)
-La distance moyenne avec les points du cluster le plus proch
-3. score de chaque point :
-$s(i) = \frac{b(i) - a(i)}{\max\left(a(i),\ b(i)\right)}
-$
-- Calcul du score global :
-$S = \frac{1}{n} \sum_{i=1}^{n} s(i)
-$
 
 **Indices internes** :
 - Calinski-Harabasz Index : Rapport BCSS/WCSS
