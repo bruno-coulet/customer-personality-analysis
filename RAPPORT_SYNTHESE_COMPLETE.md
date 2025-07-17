@@ -63,10 +63,12 @@ Préparer un dataset robuste pour identifier des segments de clients homogènes 
 
 ### **2. Correction des Valeurs Aberrantes**
 ```
-Index 11004: 1800 → 1993 (erreur de frappe)
-Index 1150:  1800 → 1999 (erreur de frappe)  
+Index 11004: 1893 → 1993 (erreur de frappe)
+Index 1150:  1899 → 1999 (erreur de frappe)  
 Index 7829:  1900 → 2000 (erreur de siècle)
 ```
+Nouvelle plage : 1940 - 2000
+Plage d'âges résultante : 25 - 85 ans
 - **Validation** : Âges résultants cohérents (18-100 ans)
 
 ### **3. Nettoyage des Modalités Marital_Status**
