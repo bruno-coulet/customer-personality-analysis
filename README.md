@@ -65,13 +65,15 @@ Ce projet vise à étudier et appliquer les algorithmes de classification non su
 **Inconvénients** :
 - Nécessite de spécifier k à l'avance
 - Sensible à l'initialisation
-- Assume des clusters de forme sphérique
+- N'est pas efficace sur les clusters non convexes et aniosotropes
+
+**cluster convexe** : on peut tracer une ligne de n'importe quel point du cluster à un autre sans sortir du cluster
 
 #### 2. Hierarchical Clustering (Classification Hiérarchique)
 **Principe** : Crée une hiérarchie de clusters par fusion (agglomérative) ou division (divisive) successive.
 
 **Fonctionnement** :
-- Agglomératif : Commence avec chaque point comme cluster, fusionne les plus proches
+- Agglomératif : Commence en considérant chaque point comme un cluster, puis fusionne les plus proches
 - Divisif : Commence avec un seul cluster, divise récursivement
 - Utilise une matrice de distances et un critère de liaison
 
@@ -121,14 +123,26 @@ Ce projet vise à étudier et appliquer les algorithmes de classification non su
 **Principe** : Mesure la qualité du clustering en comparant la cohésion intra-cluster et la séparation inter-cluster.
 
 **Calcul** :
-- Pour chaque point : s(i) = (b(i) - a(i)) / max(a(i), b(i))
-- a(i) : distance moyenne aux points du même cluster
-- b(i) : distance moyenne au cluster le plus proche
+1. Pour chaque point :
+   - cohésion  a(i)
+La distance moyenne avec les autres points du même cluster
+   -  séparation b(i)
+La distance moyenne avec les points du cluster le plus proche
+   - score  :
+$$s(i) = \frac{b(i) - a(i)}{\max\left(a(i),\ b(i)\right)}$$
+
+
+2. Score global :
+$$S = \frac{1}{n} \sum_{i=1}^{n} s(i)$$
 
 **Interprétation** :
 - Score entre -1 et 1
 - Plus proche de 1 = meilleur clustering
 - Négatif = point mal classé
+
+
+
+
 
 #### Gap Statistic
 **Principe** : Compare la variance intra-cluster observée avec celle attendue sous une distribution uniforme.
@@ -162,6 +176,7 @@ Ce projet vise à étudier et appliquer les algorithmes de classification non su
 **Objectif** : Maximiser la distance entre les différents clusters
 
 #### Indices de validité
+
 **Indices internes** :
 - Calinski-Harabasz Index : Rapport BCSS/WCSS
 - Davies-Bouldin Index : Moyenne des ratios intra/inter-cluster
